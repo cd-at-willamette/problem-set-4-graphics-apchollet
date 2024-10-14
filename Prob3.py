@@ -20,11 +20,24 @@ def clicky_box():
     def on_mouse_down(event):
         print("You clicked the window!") # Delete this once you start Part C
 
+    def click_func(e):
+        if
+
+        x = e.get_x()
+        y = e.get_y()
+        gw.box.set_location(x - SQUARE_SIZE//2, y - SQUARE_SIZE//2)
+    gw.box = GRect(GW_WIDTH//2 - SQUARE_SIZE//2, GW_HEIGHT//2 - SQUARE_SIZE//2, SQUARE_SIZE, SQUARE_SIZE)
+    gw.box.set_filled(True)
+    gw.box.set_color('pink')
+    gw.add(gw.box)
+    # I need to get the edge cords of the box and then use <= and >= to compare x and y to those point to see if
+    # clicked in the box then move the box to a random place
+    gw.add_event_listener("click", click_func)
 
     # Down here you should initialize the window and draw the initial square
     # Make sure you tab it in so that it is part of the clicky_box function
 
-    gw = GWindow(GW_WIDTH, GW_HEIGHT)
+gw = GWindow(GW_WIDTH, GW_HEIGHT)
 
 
 
