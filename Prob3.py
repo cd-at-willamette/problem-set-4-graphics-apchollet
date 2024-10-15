@@ -1,7 +1,7 @@
 ########################################
 # Name: Aly
-# Collaborators:
-# Estimate time spent (hrs): 3
+# Collaborators: Sophie
+# Estimate time spent (hrs): 4
 ########################################
 
 from pgl import GWindow, GRect, GLabel, GLine
@@ -13,11 +13,14 @@ SQUARE_SIZE = 50                    # Width and height of square
 SCORE_DX = 20                       # Distance from left of window to origin
 SCORE_DY = 20                       # Distance up from bottom of window to baseline
 SCORE_FONT = "bold 40pt 'serif'"    # Font for score
-c = random.randint(0, 450)
-d = random.randint(0, 450)
+c = random.randint(60, 440)
+d = random.randint(60, 440)
 score = 0
 def clicky_box():
-
+    message = GLabel(str(score), SCORE_DX, GW_HEIGHT - SCORE_DY)
+    message.set_font(SCORE_FONT)
+    gw.message = message
+    gw.add(gw.message)
     # Defining the callback function, which you won't need until Part C
     def on_mouse_down(event):
         print("You clicked the window!") # Delete this once you start Part C
@@ -30,23 +33,25 @@ def clicky_box():
         y = e.get_y()
         print('x,y =', x,y)
         if c <= x <= (c+ SQUARE_SIZE) and d <= y <= (d + SQUARE_SIZE):
-            c = random.randint(0, 450)
-            d = random.randint(0, 450)
+            c = random.randint(60, 450)
+            d = random.randint(60, 450)
             gw.box.set_location(c, d)
             print(True)
             #set score +1
-            r = GRect(0, 0, 40, 40)
+            r = GRect(SCORE_DX, GW_HEIGHT - SCORE_DY -50, 60, 60)
             r.set_filled(True)
             r.set_fill_color("white")
             r.set_color('white')
             gw.add(r)
             score += 1
             score_str = str(score)
-            gw.message = GLabel(str(score), SCORE_DX, SCORE_DY)
+            message = GLabel(str(score), SCORE_DX, GW_HEIGHT - SCORE_DY)
+            message.set_font(SCORE_FONT)
+            gw.message = message
             gw.add(gw.message)
             print(score)
         else:
-            r = GRect(0, 0, 40, 40)
+            r = GRect(SCORE_DX, GW_HEIGHT - SCORE_DY - 50, 60, 60)
             r.set_filled(True)
             r.set_fill_color("white")
             r.set_color('white')
@@ -55,7 +60,9 @@ def clicky_box():
             score = 0
             print(score)
             score_str = str(score)
-            gw.message = GLabel(str(score), SCORE_DX, SCORE_DY)
+            message = GLabel(str(score), SCORE_DX, GW_HEIGHT - SCORE_DY)
+            message.set_font(SCORE_FONT)
+            gw.message = message
             gw.add(gw.message)
             # set score 0
     gw.box = GRect(c , d, SQUARE_SIZE, SQUARE_SIZE)
