@@ -15,83 +15,39 @@ BRICKS_IN_BASE = 6
 w = 50 #brick width
 h = 25 #brick height
 BB = BRICKS_IN_BASE
+x = 0
+y = 0
+b = 0
 def draw_pyramid():
 
     gw = GWindow(WIDTH, HEIGHT)
 
     def n_bricks():
+        global x #ACROSS
+        global y #UP
+        global b # to reduce BB
+
+        for i in range(BB):
+            r = GRect((WIDTH // 2) - w*BB//2 + x, (HEIGHT // 2), w, h)
+            r.set_color('red')
+            gw.add(r)
+            x += w
         x = 0
-        y = 0
-        BB = BRICKS_IN_BASE
-        if BRICKS_IN_BASE % 2 == 0: #even
-            print(BB)
-            y = -h
-            for i in range(BB - 1):
-                y += h
-                x += -w // 2
-                for i in range(BB//2):
-                    #brick right
-                    print('y=', y)
-                    print('x=', x)
-                    r = GRect((WIDTH // 2) + x, (HEIGHT // 2) - (h // 2) - y, w, h)
-                    r.set_color('black')
-                    gw.add(r)
-                    x += w
-                    # brick left
-                    r = GRect((WIDTH // 2) - x, (HEIGHT // 2) - (h // 2) - y, w, h)
-                    r.set_color('black')
-                    gw.add(r)
-                    print('y=', y)
-                    print('x=', x)
-                    BB += -1
-            '''x = 0
-            # brick middle
-            r = GRect((WIDTH // 2) - (w // 2), (HEIGHT // 2) - (h // 2) - h, w, h)
-            r.set_color('black')
+        for i in range(BB -1):
+            r = GRect((WIDTH // 2) - w * (BB-1) // 2 + x, (HEIGHT // 2) - h+y, w, h)
+            r.set_color('red')
             gw.add(r)
-            for i in range((BRICKS_IN_BASE//2) - 1):
-                y += h
-                x += w
-                print(y)
-                # brick right
-                r = GRect((WIDTH // 2) - (w // 2) + (x), (HEIGHT // 2) - (h // 2) - y, w, h)
-                r.set_color('black')
-                gw.add(r)
-                # brick left
-                r = GRect((WIDTH // 2) - (w // 2) - (x), (HEIGHT // 2) - (h // 2) - y, w, h)
-                r.set_color('black')
-                gw.add(r)
-                print(y)'''
-        else: # odd
-            print(BRICKS_IN_BASE)
-            # brick middle
-            r = GRect((WIDTH // 2) - (w // 2), (HEIGHT // 2) - (h // 2), w, h)
-            r.set_color('black')
+            x += w
+        x = 0
+        for i in range(BB - 2):
+            r = GRect((WIDTH // 2) - w * (BB - 2) // 2 + x, (HEIGHT // 2) - h*2 + y, w, h)
+            r.set_color('red')
             gw.add(r)
-            for i in range(BRICKS_IN_BASE//2):
-                #brick right
-                x += w
-                r = GRect((WIDTH//2) - (w//2) + (x), (HEIGHT//2) - (h//2), w, h)
-                r.set_color('black')
-                gw.add(r)
-                # brick left
-                r = GRect((WIDTH // 2) - (w // 2) - (x), (HEIGHT // 2) - (h // 2), w, h)
-                r.set_color('black')
-                gw.add(r)
+            x += w
 
-
-
-
-
-        # brick guide
-        r = GRect((WIDTH // 2) - (w // 2), (HEIGHT // 2) - (h // 2), w, h)
-        r.set_color('yellow')
+        r = GRect((WIDTH // 2) - (w // 2), (HEIGHT // 2), w, h)
+        r.set_color('blue')
         gw.add(r)
-
-
-
-
-
 
     n_bricks()
 if __name__ == '__main__':
