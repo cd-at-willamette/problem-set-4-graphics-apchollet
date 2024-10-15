@@ -1,7 +1,7 @@
 ########################################
-# Name:
+# Name: Aly
 # Collaborators:
-# Estimate time spent (hrs):
+# Estimate time spent (hrs): 3
 ########################################
 
 from pgl import GWindow, GRect, GLabel, GLine
